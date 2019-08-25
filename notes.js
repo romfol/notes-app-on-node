@@ -13,6 +13,7 @@ const addNote = function(title, body) {
       body: body,
     })
     saveNotes(notes);
+    console.log(chalk.green.inverse('Note added'))
   } else {
     console.log(chalk.bold.red("Same note title already exists!"));
     
