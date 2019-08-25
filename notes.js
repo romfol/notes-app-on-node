@@ -19,6 +19,20 @@ const addNote = function(title, body) {
   }
 }
 
+const removeNote = function(title) {
+  const notes = loadNotes();
+  const updatedNotes = notes.filter(function(note){
+    return title !== note.title
+  })
+
+  if (notes.length > updatedNotes.length) {
+    saveNotes(updatedNotes);
+    console.log(chalk.green.inverse('Note removed'));
+  } else {
+    console.log(chalk.red.inverse('No Note found'));
+  }
+}
+
 const loadNotes = function() {
   try {
     const dataBuffer = fs.readFileSync('notes.json');
@@ -36,5 +50,6 @@ const saveNotes = function(notes) {
 
 module.exports = {
    addNote: addNote,
-   loadNotes: loadNotes
+   loadNotes: loadNotes,
+   removeNote: removeNote
  }
