@@ -42,10 +42,26 @@ yargs.command({
   describe: 'list notes',
   handler() {
     console.log(chalk.blue.inverse('Your notes'));
-    notes.loadNotes().forEach(e => {
+    notes.loadNotes().forEach(e => { //good just for now)
       console.log(chalk.yellow(e.title))
     });
   } 
 })
+
+yargs.command({
+  command: 'read',
+  describe: 'read exact note',
+  builder: {
+    title: {
+      describe: 'note title',
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler(argv) {
+    notes.readNote(argv.title);
+  } 
+})
+
 
 yargs.parse();
