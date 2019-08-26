@@ -17,7 +17,7 @@ yargs.command({
       type: 'string'
     }
   },
-  handler: function(argv) {
+  handler(argv) {
     notes.addNote(argv.title, argv.body);
   } 
 })
@@ -32,8 +32,19 @@ yargs.command({
       type: 'string'
     }
   },
-  handler: function(argv) {
+  handler(argv) {
     notes.removeNote(argv.title);
+  } 
+})
+
+yargs.command({
+  command: 'list',
+  describe: 'list notes',
+  handler() {
+    console.log(chalk.blue.inverse('Your notes'));
+    notes.loadNotes().forEach(e => {
+      console.log(chalk.yellow(e.title))
+    });
   } 
 })
 
