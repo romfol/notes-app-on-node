@@ -4,11 +4,11 @@ const chalk = require('chalk');
 const addNote = (title, body) => {
   const notes = loadNotes();
   const duplicateNote = notes.find(note => title===note.title)
-
+debugger
   if(!duplicateNote) {
      notes.push({
-      title: title,
-      body: body,
+      title,
+      body
     })
     saveNotes(notes);
     console.log(chalk.green.inverse('Note added'))
